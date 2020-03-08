@@ -9,5 +9,8 @@
         <module name="preproject" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="preproject" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
