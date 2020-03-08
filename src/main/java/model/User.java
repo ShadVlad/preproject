@@ -1,27 +1,31 @@
 package model;
-import java.sql.Array;
-import java.util.concurrent.atomic.AtomicInteger;
+import org.hibernate.annotations.*;
+//import org.hibernate.annotations.Table;
 
-//@Entity
-//@Table(name = "cars")
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity(name = "users")
+@Table(name = "users")
 public class User {
 
-//    @Id
-//    @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
 
-//    @Column(name = "name")
+    @Column(name = "name")
     private String name;
 
-//    @Column(name = "surName")
+    @Column(name = "surName")
     private String surName;
 
-//    @Column(name = "eMail")
-    private String eMail;
-
-//    @Column(name = "age")
+    @Column(name = "age")
     private int age;
+
+    @Column(name = "eMail")
+    private String eMail;
 
     public User() {
     }

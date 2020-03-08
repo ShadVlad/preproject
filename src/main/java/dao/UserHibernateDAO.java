@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserHibernateDAO implements UserDAO {
@@ -17,7 +18,7 @@ public class UserHibernateDAO implements UserDAO {
 
     public List<User> selectAllUsers() throws SQLException {
         Transaction transaction = session.beginTransaction();
-        List<User> allUsers = session.createQuery("from users").list();
+        List<User> allUsers = new ArrayList<>(session.createQuery("from users").list());
         transaction.commit();
         session.close();
         return allUsers;
