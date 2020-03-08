@@ -1,8 +1,8 @@
-package ru.javamentor.servlets;
+package servlets;
 
-import ru.javamentor.dao.UserDAO;
-import ru.javamentor.model.User;
-import ru.javamentor.utils.Util;
+import dao.UserDAO;
+import model.User;
+import utils.Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

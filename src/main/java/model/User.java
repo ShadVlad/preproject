@@ -1,4 +1,4 @@
-package ru.javamentor.model;
+package model;
 import java.sql.Array;
 import java.util.concurrent.atomic.AtomicInteger;
 

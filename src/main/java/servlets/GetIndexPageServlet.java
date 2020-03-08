@@ -1,7 +1,7 @@
-package ru.javamentor.servlets;
+package servlets;
 
-import ru.javamentor.dao.UserDAO;
-import ru.javamentor.model.User;
+import dao.UserDAO;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,15 +22,15 @@ public class GetIndexPageServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        final Object users = getServletContext().getAttribute("users");
-
-        if (users == null || !(users instanceof ConcurrentHashMap)) {
-
-            throw new IllegalStateException("You're repo does not initialize!");
-        } else {
-
-            this.users = (ConcurrentHashMap<Integer, User>) users;
-        }
+//        final Object users = getServletContext().getAttribute("users");
+//
+//        if (users == null || !(users instanceof ConcurrentHashMap)) {
+//
+//            throw new IllegalStateException("You're repo does not initialize!");
+//        } else {
+//
+//            this.users = (ConcurrentHashMap<Integer, User>) users;
+//        }
     }
 
     @Override

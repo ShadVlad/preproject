@@ -1,6 +1,6 @@
-package ru.javamentor.utils;
+package utils;
 
-import ru.javamentor.model.User;
+import model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
