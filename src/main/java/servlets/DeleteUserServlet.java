@@ -1,7 +1,6 @@
 package servlets;
 
-import dao.UserDAO;
-import model.User;
+import dao.UserJdbcDAO;
 import utils.Util;
 
 import javax.servlet.ServletException;
@@ -22,7 +21,7 @@ public class DeleteUserServlet extends HttpServlet {
 
         if (Util.idIsNumber(req)) {
             try {
-                boolean status = UserDAO.deleteUser(Integer.valueOf(req.getParameter("id")));
+                boolean status = UserJdbcDAO.deleteUser(Integer.valueOf(req.getParameter("id")));
                 resp.sendRedirect(req.getContextPath() + "/");
             } catch (SQLException e) {
                 e.printStackTrace();

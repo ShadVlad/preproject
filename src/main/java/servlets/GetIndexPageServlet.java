@@ -1,9 +1,8 @@
 package servlets;
 
-import dao.UserDAO;
+import dao.UserJdbcDAO;
 import model.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ public class GetIndexPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<User> listUser = UserDAO.selectAllUsers();
+        List<User> listUser = UserJdbcDAO.selectAllUsers();
         req.setAttribute("users", listUser);
         req.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(req, resp);
     }

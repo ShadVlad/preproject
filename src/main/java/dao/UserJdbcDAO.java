@@ -6,8 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
-    private static String jdbcURL = "jdbc:mysql://localhost:3306/db_example?serverTimezone=UTC";
+public class UserJdbcDAO implements UserDAO{
     private static String jdbcUsername = "root";
     private static String jdbcPassword = "root";
 
@@ -23,6 +22,7 @@ public class UserDAO {
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            String jdbcURL = "jdbc:mysql://localhost:3306/db_example?serverTimezone=UTC";
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -34,7 +34,7 @@ public class UserDAO {
         return connection;
     }
 
-    public static boolean addUser(User user) throws SQLException {
+     public static boolean addUser(User user) throws SQLException {
         //System.out.println(INSERT_USERS_SQL);
         // try-with-resource statement will auto close the connection.
         boolean rowAdded = false;
