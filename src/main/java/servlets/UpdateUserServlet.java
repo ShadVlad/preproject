@@ -16,21 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @WebServlet("/update")
 public class UpdateUserServlet extends HttpServlet {
-    //private Map<Integer, User> users;
-
-    @Override
-    public void init() throws ServletException {
-
-//        final Object users = getServletContext().getAttribute("users");
-//
-//        if (users == null || !(users instanceof ConcurrentHashMap)) {
-//
-//            throw new IllegalStateException("You're repo does not initialize!");
-//        } else {
-//
-//            this.users = (ConcurrentHashMap<Integer, User>) users;
-//        }
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -56,10 +41,7 @@ public class UpdateUserServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            // users.remove(Integer.valueOf(req.getParameter("id")));
         }
-        //resp.sendRedirect(req.getContextPath() + "/");
-
     }
 
     @Override
@@ -67,11 +49,6 @@ public class UpdateUserServlet extends HttpServlet {
             throws ServletException, IOException {
 
         final String id = req.getParameter("id");
-
-//        if (Util.idIsInvalid(id, users)) {
-//            resp.sendRedirect(req.getContextPath() + "/");
-//            return;
-//        }
 
         final User user = UserDAO.selectUserById(Integer.parseInt(id));
         req.setAttribute("user", user);

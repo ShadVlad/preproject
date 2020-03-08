@@ -11,32 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @WebServlet("/add")
 public class AddUserServlet extends HttpServlet {
-    private Map<Integer, User> users;
-
-    private AtomicInteger id;
-
-    @Override
-    public void init() throws ServletException {
-
-//        final Object users = getServletContext().getAttribute("users");
-//
-//        if (users == null || !(users instanceof ConcurrentHashMap)) {
-//
-//            throw new IllegalStateException("You're repo does not initialize!");
-//        } else {
-//
-//            this.users = (ConcurrentHashMap<Integer, User>) users;
-//        }
-//
-//        id = new AtomicInteger(2);
-
-    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -52,15 +29,10 @@ public class AddUserServlet extends HttpServlet {
 
             User user = new User();
 
-//            final User user = new User();
-            //final int id = this.id.getAndIncrement();
-            //user.setId(id);
             user.setAge(Integer.valueOf(age));
             user.setName(name);
             user.setSurname(surName);
             user.setEmail(email);
-//
-//            users.put(id, user);
 
             try {
                 boolean status = UserDAO.addUser(user);

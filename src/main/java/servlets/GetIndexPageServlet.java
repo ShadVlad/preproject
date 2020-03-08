@@ -10,28 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @WebServlet("/")
 public class GetIndexPageServlet extends HttpServlet {
-    private Map<Integer, User> users;
-
-    @Override
-    public void init() throws ServletException {
-
-//        final Object users = getServletContext().getAttribute("users");
-//
-//        if (users == null || !(users instanceof ConcurrentHashMap)) {
-//
-//            throw new IllegalStateException("You're repo does not initialize!");
-//        } else {
-//
-//            this.users = (ConcurrentHashMap<Integer, User>) users;
-//        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
