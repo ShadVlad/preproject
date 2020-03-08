@@ -22,9 +22,9 @@ public class Util {
 
         return name != null && name.length() > 0 &&
                 surName != null && surName.length() > 0
-//                && age != null && age.length() > 0 &&
-//                email != null && email.length() > 0 &&
-//                age.matches("[+]?\\d+")
+                && age != null && age.length() > 0 &&
+                email != null && email.length() > 0 &&
+                age.matches("[+]?\\d+")
                 ;
     }
 
@@ -42,9 +42,4 @@ public class Util {
         return user;
     }
 
-//    public static boolean idIsInvalid(final String id, Map<Integer, User> repo) {
-//        return !(id != null &&
-//                id.matches("[+]?\\d+") &&
-//                repo.get(Integer.parseInt(id)) != null);
-//    }
 }
