@@ -20,7 +20,7 @@ public class GetIndexPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<User> allUsers = UserService.getInstance().getAllUsers();
-        req.setAttribute("allUsers", allUsers);
+        req.setAttribute("users", allUsers);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/index.jsp");
         try {
             requestDispatcher.forward(req, resp);
