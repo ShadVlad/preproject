@@ -35,8 +35,6 @@ public class UserJdbcDAO implements UserDAO{
     }
 
      public static boolean addUser(User user) throws SQLException {
-        //System.out.println(INSERT_USERS_SQL);
-        // try-with-resource statement will auto close the connection.
         boolean rowAdded = false;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
