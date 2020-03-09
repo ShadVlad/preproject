@@ -20,12 +20,16 @@
 
 <br />
 /--%>
-<h4>Создание нового пользователя</h4><br>
+<h4>Редактирование пользователя</h4>
 <form method="post" action="<c:url value='/update'/>">
-    <label>Новое имя: <input type="text" name="name" value="${requestScope.user.name}" /></label><br>
-    <label>Новая фамилия: <input type="text" name="surname" value="${requestScope.user.surname}" /></label><br>
-    <label>Новый возраст: <input type="number" name="age" value="${requestScope.user.age}" /></label><br>
-    <label>Новый e-mail : <input type="text" name="email" value="${requestScope.user.email}" /></label><br>
+    <label>Имя:</label><br>
+    <input type="text" name="name" value="${requestScope.user.name}" /><br><br>
+    <label>Фамилия:</label><br>
+    <input type="text" name="surname" value="${requestScope.user.surname}" /><br><br>
+    <label>Возраст:</label><br>
+    <input type="number" name="age" value="${requestScope.user.age}" /><br><br>
+    <label>E-mail :</label><br>
+    <input type="text" name="email" value="${requestScope.user.email}" /><br><br>
 
     <input type="number" hidden name="id" value="${requestScope.user.id}"/>
 
