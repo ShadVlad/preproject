@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.UserJdbcDAO;
 import model.User;
 import service.UserService;
 import utils.Util;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/update")
 public class UpdateUserServlet extends HttpServlet {

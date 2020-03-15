@@ -5,7 +5,11 @@ import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;;
+import org.hibernate.service.ServiceRegistry;;import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBHelper {
     private static SessionFactory sessionFactory;
@@ -37,5 +41,37 @@ public class DBHelper {
         builder.applySettings(configuration.getProperties());
         ServiceRegistry serviceRegistry = builder.build();
         return configuration.buildSessionFactory(serviceRegistry);
+    }
+
+//    public static String readProperty(String typeOfConnect) throws IOException {
+//        File file = new File("src/main/resurses/config.properties");
+//        Properties properties = new Properties();
+//        try(InputStream inputStream = getClassLoader().getResourceAsStream("config.properties")){
+//            properties.load(inputStream);
+//        } catch (IOException e) {
+//            e.getMessage();
+//        }
+//        return properties;
+//        properties.load(new FileReader(file));
+//        String stringTypeOfConnect = properties.getProperty(typeOfConnect);
+//        return stringTypeOfConnect;
+//    }
+
+    public static Connection getConnection() {
+        String jdbcUsername = "root";
+        String jdbcPassword = "root";
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String jdbcURL = "jdbc:mysql://localhost:3306/db_example?serverTimezone=UTC";
+            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return connection;
     }
 }

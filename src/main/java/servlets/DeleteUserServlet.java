@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.UserJdbcDAO;
 import service.UserService;
 import utils.Util;
 
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {

@@ -16,21 +16,31 @@ public class UserHibernateDAO implements UserDAO {
         this.session = session;
     }
 
+    private static UserHibernateDAO instance;
+    static UserHibernateDAO getInstance(Session session) {
+        if (instance == null) {
+            instance = new UserHibernateDAO(session);
+        }
+        return instance;
+    }
     public List<User> selectAllUsers() throws SQLException {
         Transaction transaction = session.beginTransaction();
         List<User> allUsers = new ArrayList<>(session.createQuery("from users").list());
         transaction.commit();
-        session.close();
+        //session.close();
         return allUsers;
     }
+
+    @Override
     public void addUser(User user) throws SQLException {
         Transaction transaction = session.beginTransaction();
         session.save(user);
         transaction.commit();
-        session.close();
+        //session.close();
     }
 
-    public void updateUser(User user) throws SQLException {
+    @Override
+    public boolean updateUser(User user) throws SQLException {
         boolean rowUpdate;
         Transaction transaction = session.beginTransaction();
 //        Query query = session.createQuery("update users set " +
@@ -46,10 +56,11 @@ public class UserHibernateDAO implements UserDAO {
 //        rowUpdate = query.executeUpdate() > 0;
         session.update(user);
         transaction.commit();
-        session.close();
-        //return rowUpdate;
+        //session.close();
+        return true;
     }
 
+    @Override
     public User selectUserById(int id) throws SQLException {
         //Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -64,9 +75,11 @@ public class UserHibernateDAO implements UserDAO {
             }
         }
         transaction.commit();
-        session.close();
+        //session.close();
         return user;
     }
+
+    @Override
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDelete;
         Transaction transaction = session.beginTransaction();
@@ -74,7 +87,7 @@ public class UserHibernateDAO implements UserDAO {
         query.setParameter("paramId", id);
         rowDelete = query.executeUpdate() > 0;
         transaction.commit();
-        session.close();
+        //session.close();
         return rowDelete;
     }
 

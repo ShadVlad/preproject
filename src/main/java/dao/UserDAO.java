@@ -6,23 +6,13 @@ import java.util.List;
 
 public interface UserDAO {
 
-    static List<User> selectAllUsers() throws SQLException {
-        return null;
-    }
+    List<User> selectAllUsers() throws SQLException ;
 
-    static boolean addUser(User user) throws SQLException {
-        return false;
-    }
+    void addUser(User user) throws SQLException ;
 
-    static boolean updateUser(User user) throws SQLException {
-        return false;
-    }
+    boolean updateUser(User user) throws SQLException;
 
-    static User selectUserById(long id) throws SQLException {
-        return null;
-    }
+    User selectUserById(int id) throws SQLException;
 
-    static boolean deleteUser(long id) throws SQLException {
-        return false;
-    }
+    boolean deleteUser(int id) throws SQLException;
 }
