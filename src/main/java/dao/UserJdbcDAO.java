@@ -35,12 +35,9 @@ public class UserJdbcDAO implements UserDAO {
 
     @Override
     public List<User> selectAllUsers() {
-
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List<User> users = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBHelper.getConnection();
-
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);

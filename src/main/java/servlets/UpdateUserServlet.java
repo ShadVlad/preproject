@@ -35,13 +35,6 @@ public class UpdateUserServlet extends HttpServlet {
             //boolean status =
             UserService.getInstance().updateUser(user);
             resp.sendRedirect(req.getContextPath() + "/");
-
-//            try {
-//                boolean status = UserJdbcDAO.updateUser(user);
-//                resp.sendRedirect(req.getContextPath() + "/");
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }
 

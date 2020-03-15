@@ -32,16 +32,10 @@ public class UserDAOFactory {
             Session session = DBHelper.getSessionFactory().openSession();
             dao = UserHibernateDAO.getInstance(session);
 
-
         } else //if (DBHelper.readProperty("MethodToConnectDB").equalsIgnoreCase("JDBC"))
         {
             Connection connection = DBHelper.getConnection();
             dao = UserJdbcDAO.getInstance(connection);
-
-//            } else {
-//                Connection connection = DbHelper.getDefaultConnection();
-//                dao = JDBCDao.getInstance(connection);
-//            }
 
         }
         return dao;

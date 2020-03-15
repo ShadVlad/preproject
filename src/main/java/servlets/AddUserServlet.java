@@ -35,12 +35,6 @@ public class AddUserServlet extends HttpServlet {
 
             UserService.getInstance().addUser(user);
             resp.sendRedirect(req.getContextPath() + "/");
-//            try {
-//                boolean status = UserJdbcDAO.addUser(user);
-//                resp.sendRedirect(req.getContextPath() + "/");
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }
 }

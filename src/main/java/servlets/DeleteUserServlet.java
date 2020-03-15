@@ -21,12 +21,6 @@ public class DeleteUserServlet extends HttpServlet {
         if (Util.idIsNumber(req)) {
             boolean status = UserService.getInstance().deleteUser(Integer.valueOf(req.getParameter("id")));
             resp.sendRedirect(req.getContextPath() + "/");
-//            try {
-//                boolean status = UserJdbcDAO.deleteUser(Integer.valueOf(req.getParameter("id")));
-//                resp.sendRedirect(req.getContextPath() + "/");
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
 
     }

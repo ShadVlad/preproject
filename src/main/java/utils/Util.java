@@ -28,18 +28,4 @@ public class Util {
                 ;
     }
 
-    public static User createStubUser(final int id,
-                                      final String name,
-                                      final String surName,
-                                      final int age,
-                                      final String email) {
-        User user = new User();
-        user.setId(id);
-        user.setName(name);
-        user.setSurname(surName);
-        user.setAge(age);
-        user.setEmail(email);
-        return user;
-    }
-
 }

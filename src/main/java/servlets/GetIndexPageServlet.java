@@ -28,8 +28,5 @@ public class GetIndexPageServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-//        List<User> listUser = UserJdbcDAO.selectAllUsers();
-//        req.setAttribute("users", listUser);
-//        req.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(req, resp);
     }
 }

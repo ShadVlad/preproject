@@ -23,6 +23,8 @@ public class UserHibernateDAO implements UserDAO {
         }
         return instance;
     }
+
+    @Override
     public List<User> selectAllUsers() throws SQLException {
         Transaction transaction = session.beginTransaction();
         List<User> allUsers = new ArrayList<>(session.createQuery("from users").list());
@@ -43,17 +45,6 @@ public class UserHibernateDAO implements UserDAO {
     public boolean updateUser(User user) throws SQLException {
         boolean rowUpdate;
         Transaction transaction = session.beginTransaction();
-//        Query query = session.createQuery("update users set " +
-//                "name = :paramName," +
-//                "surname = :paramSurname," +
-//                "age = :paramAge," +
-//                "email = :paramEmail," +
-//                "where id = :paramId");
-//        query.setParameter("name", user.getName());
-//        query.setParameter("surname", user.getSurname());
-//        query.setParameter("age", user.getAge());
-//        query.setParameter("email", user.getEmail());
-//        rowUpdate = query.executeUpdate() > 0;
         session.update(user);
         transaction.commit();
         //session.close();
@@ -64,8 +55,6 @@ public class UserHibernateDAO implements UserDAO {
     public User selectUserById(int id) throws SQLException {
         //Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-//        Query query = session.createQuery("from users where id = :paramId");
-//        User user = (User) query.setParameter("paramId", id);
         Query query = session.createQuery("from users where id = :paramId");
         List<User> userList = query.setParameter("paramId", id).list();
         User user = null;
