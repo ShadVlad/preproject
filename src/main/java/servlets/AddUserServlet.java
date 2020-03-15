@@ -2,6 +2,7 @@ package servlets;
 
 import dao.UserJdbcDAO;
 import model.User;
+import service.UserService;
 import utils.Util;
 
 import javax.servlet.ServletException;
@@ -34,12 +35,14 @@ public class AddUserServlet extends HttpServlet {
             user.setSurname(surName);
             user.setEmail(email);
 
-            try {
-                boolean status = UserJdbcDAO.addUser(user);
-                resp.sendRedirect(req.getContextPath() + "/");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            UserService.getInstance().addUser(user);
+            resp.sendRedirect(req.getContextPath() + "/");
+//            try {
+//                boolean status = UserJdbcDAO.addUser(user);
+//                resp.sendRedirect(req.getContextPath() + "/");
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 }

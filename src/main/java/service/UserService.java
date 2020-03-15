@@ -33,7 +33,7 @@ public class UserService {
         return getAllUsers;
     }
 
-    public User getUserById(long id) {
+    public User getUserById(int id) {
         User user = null;
         try {
             user = new UserHibernateDAO(sessionFactory.openSession()).selectUserById(id);
@@ -51,17 +51,17 @@ public class UserService {
         }
     }
 
-    public boolean updateUser(User user) {
+    public void updateUser(User user) {
         boolean updateUser = false;
         try {
-            updateUser = new UserHibernateDAO(sessionFactory.openSession()).updateUser(user);
+            new UserHibernateDAO(sessionFactory.openSession()).updateUser(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return updateUser;
+        //return updateUser;
     }
 
-    public boolean deleteUser(long id) {
+    public boolean deleteUser(int id) {
         boolean deleteUser = false;
         try {
             deleteUser = new UserHibernateDAO(sessionFactory.openSession()).deleteUser(id);

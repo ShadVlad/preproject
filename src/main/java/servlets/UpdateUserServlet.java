@@ -2,6 +2,7 @@ package servlets;
 
 import dao.UserJdbcDAO;
 import model.User;
+import service.UserService;
 import utils.Util;
 
 import javax.servlet.ServletException;
@@ -27,18 +28,22 @@ public class UpdateUserServlet extends HttpServlet {
         final String age = req.getParameter("age");
         final String email = req.getParameter("email");
 
-        final User user = UserJdbcDAO.selectUserById(Integer.parseInt(id));
+        final User user = UserService.getInstance().getUserById(Integer.parseInt(id));
         user.setName(name);
         user.setSurname(surName);
         user.setAge(Integer.parseInt(age));
         user.setEmail(email);
         if (Util.idIsNumber(req)) {
-            try {
-                boolean status = UserJdbcDAO.updateUser(user);
-                resp.sendRedirect(req.getContextPath() + "/");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            //boolean status =
+            UserService.getInstance().updateUser(user);
+            resp.sendRedirect(req.getContextPath() + "/");
+
+//            try {
+//                boolean status = UserJdbcDAO.updateUser(user);
+//                resp.sendRedirect(req.getContextPath() + "/");
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -48,7 +53,8 @@ public class UpdateUserServlet extends HttpServlet {
 
         final String id = req.getParameter("id");
 
-        final User user = UserJdbcDAO.selectUserById(Integer.parseInt(id));
+        final User user = UserService.getInstance().getUserById(Integer.parseInt(id));
+        //final User user = UserJdbcDAO.selectUserById(Integer.parseInt(id));
         req.setAttribute("user", user);
 
         req.getRequestDispatcher("/WEB-INF/view/update.jsp")

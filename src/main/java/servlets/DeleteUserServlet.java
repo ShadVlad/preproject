@@ -1,6 +1,7 @@
 package servlets;
 
 import dao.UserJdbcDAO;
+import service.UserService;
 import utils.Util;
 
 import javax.servlet.ServletException;
@@ -20,12 +21,14 @@ public class DeleteUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         if (Util.idIsNumber(req)) {
-            try {
-                boolean status = UserJdbcDAO.deleteUser(Integer.valueOf(req.getParameter("id")));
-                resp.sendRedirect(req.getContextPath() + "/");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            boolean status = UserService.getInstance().deleteUser(Integer.valueOf(req.getParameter("id")));
+            resp.sendRedirect(req.getContextPath() + "/");
+//            try {
+//                boolean status = UserJdbcDAO.deleteUser(Integer.valueOf(req.getParameter("id")));
+//                resp.sendRedirect(req.getContextPath() + "/");
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
 
     }

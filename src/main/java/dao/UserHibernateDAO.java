@@ -30,34 +30,44 @@ public class UserHibernateDAO implements UserDAO {
         session.close();
     }
 
-    public boolean updateUser(User user) throws SQLException {
+    public void updateUser(User user) throws SQLException {
         boolean rowUpdate;
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("update users set " +
-                "name = :paramName," +
-                "surname = :paramSurname," +
-                "age = :paramAge," +
-                "email = :paramEmail," +
-                "where id = :paramId");
-        query.setParameter("name", user.getName());
-        query.setParameter("surname", user.getSurname());
-        query.setParameter("age", user.getAge());
-        query.setParameter("email", user.getEmail());
-        rowUpdate = query.executeUpdate() > 0;
+//        Query query = session.createQuery("update users set " +
+//                "name = :paramName," +
+//                "surname = :paramSurname," +
+//                "age = :paramAge," +
+//                "email = :paramEmail," +
+//                "where id = :paramId");
+//        query.setParameter("name", user.getName());
+//        query.setParameter("surname", user.getSurname());
+//        query.setParameter("age", user.getAge());
+//        query.setParameter("email", user.getEmail());
+//        rowUpdate = query.executeUpdate() > 0;
+        session.update(user);
         transaction.commit();
         session.close();
-        return rowUpdate;
+        //return rowUpdate;
     }
 
-    public User selectUserById(long id) throws SQLException {
+    public User selectUserById(int id) throws SQLException {
+        //Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+//        Query query = session.createQuery("from users where id = :paramId");
+//        User user = (User) query.setParameter("paramId", id);
         Query query = session.createQuery("from users where id = :paramId");
-        User user = (User) query.setParameter("paramId", id);
+        List<User> userList = query.setParameter("paramId", id).list();
+        User user = null;
+        for (User u : userList) {
+            if (u.getId() == id) {
+                user = u;
+            }
+        }
         transaction.commit();
         session.close();
         return user;
     }
-    public boolean deleteUser(long id) throws SQLException {
+    public boolean deleteUser(int id) throws SQLException {
         boolean rowDelete;
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("delete users where id = :paramId");
