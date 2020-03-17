@@ -27,23 +27,39 @@ public class User {
     @Column(name = "eMail")
     private String eMail;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "role")
+    private String role;
+
     public User() {
     }
 
-    public User(int id, String name, String surName, int age, String eMail) {
+    public User(int id, String name, String surName, int age, String eMail, String login, String password, String role) {
         super();
         this.id = id;
         this.name = name;
         this.surName = surName;
         this.age = age;
         this.eMail = eMail;
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
-    public User(String name, String surName, int age, String eMail) {
+
+    public User(String name, String surName, int age, String eMail, String login, String password, String role) {
         super();
         this.name = name;
         this.surName = surName;
         this.age = age;
         this.eMail = eMail;
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
 
     public String getName() {
@@ -80,6 +96,15 @@ public class User {
     public void setEmail(String eMail) {
         this.eMail = eMail;
     }
+
+    public String getLogin() { return login; }
+    public void setLogin(String login) { this.login = login; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
 }
 
