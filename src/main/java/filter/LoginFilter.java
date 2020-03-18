@@ -32,48 +32,31 @@ public class LoginFilter implements Filter {
 
         final HttpSession session = req.getSession();
         req.setAttribute("message", "");
+        User user = UserService.getInstance().getUserByLogin(login);
+        String role = "";
         //Logged user.
         if (nonNull(session) &&
                 nonNull(session.getAttribute("login")) &&
                 nonNull(session.getAttribute("password"))) {
+            role = String.valueOf(session.getAttribute("role"));
 
-           // final User.ROLE role = (User.ROLE) session.getAttribute("role");
-
-            String role = String.valueOf(session.getAttribute("role"));
-            req.setAttribute("message", "");
-            moveToMenu(req, res, role);
-
-
-        } else{
-            User user = UserService.getInstance().getUserByLogin(login);
-            if ((login != null) && (user == null)) {
-                req.setAttribute("message", "login unknown");
-                moveToMenu(req, res, "");
-            }
-
-//
-//            final User.ROLE role = dao.get().getRoleByLoginPassword(login, password);
-//
-//            req.getSession().setAttribute("password", password);
-//            req.getSession().setAttribute("login", login);
-//            req.getSession().setAttribute("role", role);
-//
-
-
-            else
-            {
-                req.setAttribute("message", "");
-                moveToMenu(req, res,"");
-            }
         }
+        if (user == null) {
+            if (login != null) {
+                req.setAttribute("message", "login unknown");
+            }
+        } else if (!user.getPassword().equals(password)) {
+            req.setAttribute("message", "password uncorrected");
+        } else {
+            role = user.getRole();
+        }
+        req.setAttribute("user", user);
+
+        moveToRole(req, res, role);
     }
 
-    /**
-     * Move user to menu.
-     * If access 'admin' move to admin menu.
-     * If access 'user' move to user menu.
-     */
-    private void moveToMenu(final HttpServletRequest req,
+
+    private void moveToRole(final HttpServletRequest req,
                             final HttpServletResponse res,
                             final String role)
             throws ServletException, IOException {
@@ -81,14 +64,17 @@ public class LoginFilter implements Filter {
 
         if (role.equals("admin")) {
 
-            req.getRequestDispatcher("/WEB-INF/view/admin_menu.jsp").forward(req, res);
+            //res.sendRedirect( "/admin");
+            req.getRequestDispatcher("/admin").forward(req, res);
 
         } else if (role.equals("user")) {
 
-            req.getRequestDispatcher("/WEB-INF/view/user_menu.jsp").forward(req, res);
+            //res.sendRedirect("/user");
+            req.getRequestDispatcher("/WEB-INF/view/user.jsp").forward(req, res);
 
         } else {
 
+            //res.sendRedirect("/login");
             req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, res);
         }
     }

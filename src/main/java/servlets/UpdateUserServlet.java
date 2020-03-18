@@ -25,16 +25,23 @@ public class UpdateUserServlet extends HttpServlet {
         final String surName = req.getParameter("surname");
         final String age = req.getParameter("age");
         final String email = req.getParameter("email");
+        final String login = req.getParameter("login");
+        final String password = req.getParameter("password");
+        final String role = req.getParameter("role");
 
         final User user = UserService.getInstance().getUserById(Integer.parseInt(id));
         user.setName(name);
         user.setSurname(surName);
         user.setAge(Integer.parseInt(age));
         user.setEmail(email);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setRole(role);
+
         if (Util.idIsNumber(req)) {
             //boolean status =
             UserService.getInstance().updateUser(user);
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/admin");
         }
     }
 

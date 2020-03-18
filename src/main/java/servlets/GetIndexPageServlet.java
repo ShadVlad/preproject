@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,14 +19,14 @@ public class GetIndexPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-//        List<User> allUsers = UserService.getInstance().getAllUsers();
-//        req.setAttribute("users", allUsers);
-//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/index.jsp");
-//        try {
-//            requestDispatcher.forward(req, resp);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
+        List<User> allUsers = UserService.getInstance().getAllUsers();
+        req.setAttribute("users", allUsers);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/index.jsp");
+        try {
+            requestDispatcher.forward(req, resp);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
 
     }
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,7 +59,7 @@ public class GetIndexPageServlet extends HttpServlet {
 //            } catch (ExceptionFromReadMethod exceptionFromReadMethod) {
 //                exceptionFromReadMethod.printStackTrace();
 //            }
-//            doGet(req, resp);
+            doGet(req, resp);
 //        }
     }
 

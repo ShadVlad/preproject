@@ -25,6 +25,9 @@ public class AddUserServlet extends HttpServlet {
             final String surName = req.getParameter("surname");
             final String age = req.getParameter("age");
             final String email = req.getParameter("email");
+            final String login = req.getParameter("login");
+            final String password = req.getParameter("password");
+            final String role = req.getParameter("role");
 
             User user = new User();
 
@@ -32,9 +35,12 @@ public class AddUserServlet extends HttpServlet {
             user.setName(name);
             user.setSurname(surName);
             user.setEmail(email);
+            user.setLogin(login);
+            user.setPassword(password);
+            user.setRole(role);
 
             UserService.getInstance().addUser(user);
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/admin");
         }
     }
 }

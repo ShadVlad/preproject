@@ -30,6 +30,12 @@
     <input type="number" name="age" value="${requestScope.user.age}" /><br><br>
     <label>E-mail :</label><br>
     <input type="text" name="email" value="${requestScope.user.email}" /><br><br>
+    <label>Login:</label><br>
+    <input type="text" name="login" value="${requestScope.user.login}" /><br><br>
+    <label>Password:</label><br>
+    <input type="text" name="password" value="${requestScope.user.password}" /><br><br>
+    <label>Роль :</label><br>
+    <input type="text" name="role" value="${requestScope.user.role}" /><br><br>
 
     <input type="number" hidden name="id" value="${requestScope.user.id}"/>
 

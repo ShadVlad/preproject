@@ -20,7 +20,7 @@ public class DeleteUserServlet extends HttpServlet {
 
         if (Util.idIsNumber(req)) {
             boolean status = UserService.getInstance().deleteUser(Integer.valueOf(req.getParameter("id")));
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/admin");
         }
 
     }

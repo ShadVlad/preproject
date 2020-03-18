@@ -22,6 +22,10 @@
     Фамилия  <label><input type="text" name="surname"></label>
     Возраст  <label><input type="number" name="age"></label>
     e-mail   <label><input type="text" name="email"></label>
+    <br><br>
+    login    <label><input type="text" name="login"></label>
+    password <label><input type="text" name="password"></label>
+    role     <label><input type="text" name="role"></label>
     <input type="submit" value="Создать" name="Ok"><br>
 </form>
 
@@ -43,35 +47,8 @@
         </tr>
     </c:forEach>
 </table>
-<%--<form method="post" action="<c:url value='/delete'/>"><a href="delete?id=<c:out value='${user.id}' />">удалить</a></form>
-<a href="update?id=<c:out value='${user.id}' />">изменить</a>
-<c:forEach var="user" items="${requestScope.users}">
-    <ul>
-        <li>Имя: <c:out value="${user.name}"/></li>
-        <li>Возраст: <c:out value="${user.age}"/></li>
-        <form method="post" action="<c:url value='/delete'/>">
-            <input type="number" hidden name="id" value="${user.id}" />
-            <input type="submit" name="delete" value="Удалить"/>
-        </form>
-
-        <form method="get" action="<c:url value='/update'/>">
-            <input type="number" hidden name="id" value="${user.id}" />
-            <input type="submit" value="Редактировать"/>
-        </form>
-    </ul>
-    <hr />
-</c:forEach>
-                <form method="post" action="<c:url value='/delete'/>">
-                    <input type="number" hidden name="id" value="${user.id}" />
-                    <input type="submit" name="delete" value="Удалить"/>
-                </form>
-
-                <form method="get" action="<c:url value='/update'/>">
-                    <input type="number" hidden name="id" value="${user.id}" />
-                    <input type="submit" value="Редактировать"/>
-                </form>
-
-/--%>
+<hr />
+<a href="<c:url value="/logout"/>">Logout</a>
 
 </body>
 </html>

@@ -14,7 +14,7 @@
 <div class="form">
 
     <h3>Вход в систему</h3><br>
-    <form method="post" action="">
+    <form method="post" action="/">
         <label >Login    </label><br>
         <input type="text" required placeholder="login" name="login"><br><br>
         <label >Password </label><br>
