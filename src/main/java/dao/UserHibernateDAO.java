@@ -69,6 +69,21 @@ public class UserHibernateDAO implements UserDAO {
     }
 
     @Override
+    public User selectUserByLogin(String login) throws SQLException {
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from users where login = :paramLogin");
+        List<User> userList = query.setParameter("paramLogin", login).list();
+        User user = null;
+        for (User u : userList) {
+            if (u.getLogin().equals(login)) {
+                user = u;
+            }
+        }
+        transaction.commit();
+        return user;
+    }
+
+    @Override
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDelete;
         Transaction transaction = session.beginTransaction();

@@ -2,10 +2,7 @@ package service;
 
 import dao.UserDAO;
 import dao.UserDAOFactory;
-import dao.UserHibernateDAO;
 import model.User;
-import org.hibernate.SessionFactory;
-import utils.DBHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -77,4 +74,15 @@ public class UserService {
         }
         return deleteUser;
     }
+
+    public User getUserByLogin(String login) {
+        User user = null;
+        try {
+            user = userDAO.selectUserByLogin(login);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }

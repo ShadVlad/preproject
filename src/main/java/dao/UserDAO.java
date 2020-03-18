@@ -14,5 +14,7 @@ public interface UserDAO {
 
     User selectUserById(int id) throws SQLException;
 
+    User selectUserByLogin(String login) throws SQLException;
+
     boolean deleteUser(int id) throws SQLException;
 }

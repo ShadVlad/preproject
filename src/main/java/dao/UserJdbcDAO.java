@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserJdbcDAO implements UserDAO {
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, surname, age, email) VALUES "
-            + " (?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, surname, age, email,login,password,role) VALUES "
+            + " (?, ?, ?, ?, ?, ?, ?);";
 
     private static final String SELECT_USER_BY_ID = "select id,name,surname,age,email,login,password,role from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
@@ -150,6 +150,11 @@ public class UserJdbcDAO implements UserDAO {
             printSQLException(e);
         }
         return user;
+    }
+
+    @Override
+    public User selectUserByLogin(String login) throws SQLException {
+        return null;
     }
 
     @Override
