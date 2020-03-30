@@ -12,12 +12,6 @@ import java.io.IOException;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("UTF-8");
-//        //response.sendRedirect("/user");
-//        //request.getRequestDispatcher("/WEB-INF/view/user.jsp").forward(request, response);
-//        //doGet(request, response);
-//    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");

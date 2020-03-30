@@ -32,8 +32,6 @@ public class GetIndexPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF8");
         resp.sendRedirect("/admin");
-//        final String login = req.getParameter("login");
-//        final String password = req.getParameter("password");
 
         doGet(req, resp);
     }
