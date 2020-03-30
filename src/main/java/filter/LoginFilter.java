@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter("/")
+@WebFilter("/*")
 public class LoginFilter implements Filter {
     public void destroy() {
     }
@@ -27,57 +27,74 @@ public class LoginFilter implements Filter {
         final HttpServletRequest req = (HttpServletRequest) request;
         final HttpServletResponse res = (HttpServletResponse) response;
 
-        final String login = req.getParameter("login");
-        final String password = req.getParameter("password");
-
+//        final String login = req.getParameter("login");
+//        final String password = req.getParameter("password");
         final HttpSession session = req.getSession();
-        req.setAttribute("message", "");
-        User user = UserService.getInstance().getUserByLogin(login);
+        String servletPath = req.getServletPath();
+//        ;
+//        if (servletPath.equals("/login")) {
+//            req.setCharacterEncoding("UTF-8");
+//            res.setCharacterEncoding("UTF-8");
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+
+        //req.setAttribute("message", "");
+        User user = (User) session.getAttribute("user");
+        //User user = UserService.getInstance().getUserByLogin(login);
         String role = "";
-        //Logged user.
-        if (nonNull(session) &&
-                nonNull(session.getAttribute("login")) &&
-                nonNull(session.getAttribute("password"))) {
-            role = String.valueOf(session.getAttribute("role"));
 
-        }
-        if (user == null) {
-            if (login != null) {
-                req.setAttribute("message", "login unknown");
-            }
-        } else if (!user.getPassword().equals(password)) {
-            req.setAttribute("message", "password uncorrected");
-        } else {
+        if (user != null) {
             role = user.getRole();
-        }
-        req.setAttribute("user", user);
-
-        moveToRole(req, res, role);
-    }
-
-
-    private void moveToRole(final HttpServletRequest req,
-                            final HttpServletResponse res,
-                            final String role)
-            throws ServletException, IOException {
-
-
-        if (role.equals("admin")) {
-
-            //res.sendRedirect( "/admin");
-            req.getRequestDispatcher("/admin").forward(req, res);
-
-        } else if (role.equals("user")) {
-
-            //res.sendRedirect("/user");
-            req.getRequestDispatcher("/WEB-INF/view/user.jsp").forward(req, res);
-
+            if (servletPath.equals("/user")) {
+                filterChain.doFilter(req, res);
+            } else if (servletPath.equals("/logout")) {
+                filterChain.doFilter(req, res);
+            } else if (servletPath.equals("/login")) {
+                filterChain.doFilter(req, res);
+            }else if (role.equals("admin")) {
+                filterChain.doFilter(req, res);
+            } else if (role.equals("user")) {
+                //req.setAttribute("user", user);
+                res.sendRedirect("/user");
+                //req.setAttribute("ServletPath", "/user" );
+                //req.getRequestDispatcher("/user").forward(req, res);
+                //filterChain.doFilter(req, res);
+            }
         } else {
-
-            //res.sendRedirect("/login");
-            req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, res);
+            req.getRequestDispatcher("/login").forward(req, res);
         }
     }
+
+
+//    private void moveToRole(final HttpServletRequest req,
+//                            final HttpServletResponse res,
+//                            final FilterChain filterChain,
+//                            final User user,
+//                            final String role)
+//            throws ServletException, IOException {
+//
+//
+//        if (role.equals("admin")) {
+//
+//            //req.getRequestDispatcher( "/admin");
+//            //req.getRequestDispatcher("/admin").forward(req, res);
+////            req.setCharacterEncoding("UTF-8");
+////            res.setCharacterEncoding("UTF-8");
+//            filterChain.doFilter(req, res);
+//
+//        } else if (role.equals("user")) {
+//
+//            req.setAttribute("user", user);
+//            res.sendRedirect("/user");
+//            //req.getRequestDispatcher("/user").forward(req, res);
+//
+//        } else {
+//
+//            //res.sendRedirect("/login");
+//            req.getRequestDispatcher("/login").forward(req, res);
+//        }
+//    }
 
     public void init(javax.servlet.FilterConfig config) throws javax.servlet.ServletException {
 

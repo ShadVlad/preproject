@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class DeleteUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -20,8 +20,14 @@ public class DeleteUserServlet extends HttpServlet {
 
         if (Util.idIsNumber(req)) {
             boolean status = UserService.getInstance().deleteUser(Integer.valueOf(req.getParameter("id")));
-            resp.sendRedirect(req.getContextPath() + "/admin");
-        }
 
+        }
+        resp.sendRedirect(req.getContextPath() + "/admin");
+        //
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("/admin/read").forward(req, resp);
     }
 }

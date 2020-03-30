@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/update")
+@WebServlet("/admin/update")
 public class UpdateUserServlet extends HttpServlet {
 
     @Override
@@ -50,11 +50,9 @@ public class UpdateUserServlet extends HttpServlet {
             throws ServletException, IOException {
 
         final String id = req.getParameter("id");
-
         final User user = UserService.getInstance().getUserById(Integer.parseInt(id));
-        //final User user = UserJdbcDAO.selectUserById(Integer.parseInt(id));
-        req.setAttribute("user", user);
 
+        req.setAttribute("user", user);
         req.getRequestDispatcher("/WEB-INF/view/update.jsp")
                 .forward(req, resp);
     }

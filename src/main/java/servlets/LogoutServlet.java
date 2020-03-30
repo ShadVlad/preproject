@@ -12,7 +12,7 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //response.sendRedirect("/login");
+        response.sendRedirect("/login");
     }
 
     @Override
@@ -24,7 +24,7 @@ public class LogoutServlet extends HttpServlet {
         session.removeAttribute("login");
         session.removeAttribute("role");
 
-        response.sendRedirect("/");
+        response.sendRedirect("/login");
         //request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
     }
 

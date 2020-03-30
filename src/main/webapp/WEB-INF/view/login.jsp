@@ -5,6 +5,7 @@
   Time: 21:16
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,7 +15,7 @@
 <div class="form">
 
     <h3>Вход в систему</h3><br>
-    <form method="post" action="/">
+    <form method="post" action="/login">
         <label >Login    </label><br>
         <input type="text" required placeholder="login" name="login"><br><br>
         <label >Password </label><br>
